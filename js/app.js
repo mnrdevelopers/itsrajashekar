@@ -1754,7 +1754,7 @@ function renderSidebarTOC(searchQuery = '', showOnlyFavs = false) {
           <span class="toc-title">${title}</span>
           <span class="toc-desc">${desc}</span>
         </div>
-        <span class="toc-page">${i}</span>
+        <span class="toc-page">${i + 1}</span>
       `;
       tocListElement.appendChild(li);
     }
