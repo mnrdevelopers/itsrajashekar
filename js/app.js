@@ -1900,7 +1900,11 @@ async function triggerPDFDownload() {
     pageClone.style.width = '900px';
     pageClone.style.height = '1125px'; // 4:5 ratio
     pageClone.style.pageBreakAfter = 'always';
+    pageClone.style.pageBreakInside = 'avoid';
     pageClone.style.boxShadow = 'none';
+    pageClone.style.margin = '0';
+    pageClone.style.padding = '0';
+    pageClone.style.border = 'none';
     pageClone.style.display = 'flex';
     pageClone.style.flexDirection = 'column';
     pageClone.style.justifyContent = 'space-between';
@@ -1943,8 +1947,9 @@ async function triggerPDFDownload() {
     margin: 0,
     filename: '10-Best-PCOS-Thyroid-Recipes.pdf',
     image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 1.5, useCORS: true, logging: false },
-    jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+    html2canvas: { scale: 2, useCORS: true, logging: false },
+    jsPDF: { unit: 'px', format: [900, 1125], hotfixes: ['px_scaling'] },
+    pagebreak: { mode: ['avoid-all', 'css'] }
   };
   
   try {
