@@ -512,7 +512,7 @@ function getSecondPageHTMLContent() {
 
 const customRecipeData = [
   {
-    title: "Vegetable Moong Dal Chilla",
+    title: "🥞 Vegetable Moong Dal Chilla",
     category: "Recipe 01 • Breakfast",
     calories: "220 kcal",
     protein: "11g",
@@ -536,7 +536,7 @@ const customRecipeData = [
     benefits: "Yellow Moong Dal is a low-glycemic, high-protein plant source that supports insulin sensitivity and weight management for women with PCOS."
   },
   {
-    title: "Egg & Vegetable Scramble",
+    title: "🍳 Egg & Vegetable Scramble",
     category: "Recipe 02 • Breakfast",
     calories: "260 kcal",
     protein: "20g",
@@ -560,7 +560,7 @@ const customRecipeData = [
     benefits: "Rich in choline, proteins, and selenium, which are essential building blocks for thyroid hormone synthesis and metabolic functions."
   },
   {
-    title: "Millet Vegetable Upma",
+    title: "🌾 Millet Vegetable Upma",
     category: "Recipe 03 • Breakfast",
     calories: "240 kcal",
     protein: "8g",
@@ -584,7 +584,7 @@ const customRecipeData = [
     benefits: "Foxtail millet is rich in dietary fiber and magnesium, helping to stabilize glycemic response and improve lipid profiles."
   },
   {
-    title: "Avocado & Spinach Toast",
+    title: "🥗 Grilled Chicken & Salad Bowl",
     category: "Recipe 04 • Lunch Selection",
     calories: "290 kcal",
     protein: "9g",
@@ -595,44 +595,44 @@ const customRecipeData = [
       "1 Slice sourdough or gluten-free bread",
       "1/2 Ripe avocado",
       "Handful of baby spinach leaves",
-      "1 tsp fresh lemon juice",
-      "Chili flakes, sea salt, black sesame"
+      "1/2 chicken breast (grilled)",
+      "Olive oil, lemon juice, salt, pepper"
     ],
     directions: [
-      "Toast bread until crisp and golden brown.",
-      "Mash avocado with lemon juice, salt, and pepper in a bowl.",
-      "Sauté spinach leaves in a pan with water for 1 minute.",
-      "Spread mashed avocado over the toasted bread.",
-      "Top with sautéed spinach, chili flakes, and black sesame."
+      "Chop salad greens, cucumbers, and tomatoes.",
+      "Slice grilled chicken breast into strips.",
+      "Whisk olive oil, lemon juice, and sea salt in a bowl.",
+      "Toss salad greens in the dressing.",
+      "Top with sliced chicken breast and fresh avocado."
     ],
-    benefits: "Monounsaturated fats from avocado help absorb fat-soluble vitamins and support progesterone production."
+    benefits: "Clean proteins and leafy greens provide vitamins and minerals to optimize metabolic rate and energy levels."
   },
   {
-    title: "Berry Hormone Smoothie",
-    category: "Recipe 05 • Snack Selection",
+    title: "🥣 Oats & Chia Porridge",
+    category: "Recipe 05 • Breakfast Selection",
     calories: "210 kcal",
     protein: "15g",
     carbs: "28g",
     fiber: "5g",
     img: "https://images.unsplash.com/photo-1553530979-7ee52a2670c4?auto=format&fit=crop&w=600&q=80",
     ingredients: [
-      "1 cup Frozen mixed berries",
-      "1 scoop Organic plant-based protein",
-      "1 tbsp ground flaxseeds",
-      "1 cup unsweetened almond milk",
-      "Pinch of cinnamon powder"
+      "1/2 cup rolled oats",
+      "2 tbsp chia seeds",
+      "1 cup almond milk",
+      "1 tsp honey",
+      "Fresh berries for topping"
     ],
     directions: [
-      "Add berries and protein powder to blender.",
-      "Add flaxseeds and cinnamon for extra hormone support.",
-      "Pour in almond milk.",
-      "Blend on high speed until thick and smooth.",
-      "Serve cold immediately."
+      "Combine oats, chia seeds, and almond milk in a pot.",
+      "Bring to a gentle boil, then simmer on low heat for 5 minutes.",
+      "Stir continuously until creamy.",
+      "Remove from heat, stir in honey.",
+      "Top with fresh berries and serve."
     ],
-    benefits: "Berries are loaded with antioxidants that lower systemic inflammation, while flaxseeds support healthy estrogen metabolism."
+    benefits: "High fiber beta-glucans from oats and omega-3 from chia seeds assist in digestion and hormone regulation."
   },
   {
-    title: "Lemon Herb Grilled Salmon",
+    title: "🥬 Palak Paneer",
     category: "Recipe 06 • Dinner Selection",
     calories: "380 kcal",
     protein: "34g",
@@ -640,46 +640,47 @@ const customRecipeData = [
     fiber: "2g",
     img: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=600&q=80",
     ingredients: [
-      "150g Salmon fillet (skin-on)",
-      "1/2 Lemon (sliced & juiced)",
-      "1 clove Garlic (minced)",
-      "1 tsp Rosemary & fresh dill",
-      "1 tbsp Extra virgin olive oil"
+      "200g Paneer (cubed)",
+      "2 cups Fresh spinach (blanched & pureed)",
+      "1 onion & 1 tomato (chopped)",
+      "Garlic, ginger, green chilies",
+      "Garam masala, turmeric, cumin"
     ],
     directions: [
-      "Marinate salmon with olive oil, lemon juice, garlic, and herbs.",
-      "Heat a grill pan or cast iron skillet on medium-high.",
-      "Cook salmon skin-side down for 4-5 minutes.",
-      "Gently flip and cook for another 3 minutes.",
-      "Serve warm garnished with lemon slices."
+      "Puree blanched spinach with green chilies.",
+      "Sauté chopped onions, ginger, and garlic in a pan.",
+      "Add tomatoes and spices, cooking until soft.",
+      "Pour in spinach puree and simmer for 5 minutes.",
+      "Add paneer cubes, stir gently, and cook for 2 minutes."
     ],
-    benefits: "High concentration of Omega-3 fatty acids reduces inflammation, balances insulin, and supports thyroid cellular health."
+    benefits: "Rich in calcium, protein, and iron, spinaches and paneer support thyroid synthesis and muscle recovery."
   },
   {
-    title: "Coconut Chia Seed Pudding",
-    category: "Recipe 07 • Dessert Selection",
+    title: "🐟 Salmon / Fish Curry",
+    category: "Recipe 07 • Dinner Selection",
     calories: "180 kcal",
     protein: "5g",
     carbs: "18g",
     fiber: "11g",
     img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80",
     ingredients: [
-      "3 tbsp Chia seeds",
-      "1 cup Unsweetened light coconut milk",
-      "1/2 tsp pure vanilla extract",
-      "1 tsp maple syrup or stevia",
-      "Handful of fresh raspberries"
+      "200g Fish fillets (salmon or white fish)",
+      "1 cup light coconut milk",
+      "1 onion (chopped)",
+      "Ginger-garlic paste",
+      "Curry powder, turmeric, mustard seeds"
     ],
     directions: [
-      "Whisk chia seeds, coconut milk, vanilla, and syrup in a bowl.",
-      "Let sit for 10 minutes, then stir again to break clumps.",
-      "Cover and chill in refrigerator for 4 hours.",
-      "Top with fresh raspberries before serving."
+      "Heat oil, crackle mustard seeds, and sauté chopped onions.",
+      "Add ginger-garlic paste and spices, cook for 1 minute.",
+      "Pour coconut milk and bring to a light simmer.",
+      "Gently add fish fillets, spooning sauce over them.",
+      "Cover and simmer on low for 6-8 minutes until fish flakes."
     ],
-    benefits: "Chia seeds contain alpha-linolenic acid (ALA) and high fiber, promoting gut health and bowel regularity to clear excess hormones."
+    benefits: "High omega-3 content in fish suppresses inflammation and improves insulin receptor activity."
   },
   {
-    title: "Mediterranean Chickpea Salad",
+    title: "🥗 Chickpea & Vegetable Salad",
     category: "Recipe 08 • Lunch Selection",
     calories: "310 kcal",
     protein: "12g",
@@ -687,47 +688,46 @@ const customRecipeData = [
     fiber: "12g",
     img: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80",
     ingredients: [
-      "1 cup Canned chickpeas (drained)",
-      "1/2 Cucumber (chopped)",
-      "1/2 cup Cherry tomatoes (halved)",
-      "1 tbsp lemon juice & olive oil",
-      "Crumbled vegan feta cheese & parsley"
+      "1 cup cooked chickpeas",
+      "1/2 cup cucumber (diced)",
+      "1/2 cup bell peppers (chopped)",
+      "Lemon-herb dressing",
+      "Parsley, mint leaves"
     ],
     directions: [
-      "Rinse and drain chickpeas thoroughly.",
-      "In a salad bowl, toss chickpeas, cucumber, and tomatoes.",
-      "Drizzle with lemon juice and olive oil.",
-      "Garnish with chopped parsley.",
-      "Top with crumbled feta and serve."
+      "Toss chickpeas, cucumbers, and bell peppers in a salad bowl.",
+      "Drizzle with fresh lemon juice and cold-pressed olive oil.",
+      "Season with sea salt, black pepper, and herbs.",
+      "Toss well and garnish with mint.",
+      "Serve chilled or at room temperature."
     ],
-    benefits: "Legumes provide slow-releasing carbohydrates and plant-based protein to sustain energy and prevent glucose spikes."
+    benefits: "High fiber legumes support gut microbiome health, ensuring excess estrogen is cleared from the body."
   },
   {
-    title: "Turmeric Ginger Golden Latte",
-    category: "Recipe 09 • Drink Selection",
+    title: "🍓 Greek Yogurt Protein Bowl",
+    category: "Recipe 09 • Snack Selection",
     calories: "120 kcal",
     protein: "3g",
     carbs: "12g",
     fiber: "1g",
     img: "https://images.unsplash.com/photo-1542556040-ee9808df090c?auto=format&fit=crop&w=600&q=80",
     ingredients: [
-      "1 cup Unsweetened almond or coconut milk",
-      "1/2 tsp organic Turmeric powder",
-      "1/4 tsp Ginger powder",
-      "Pinch of black pepper & cinnamon",
-      "1 tsp organic honey or stevia"
+      "1 cup Plain Greek yogurt (low sugar)",
+      "Handful of sliced strawberries",
+      "1 tbsp pumpkin seeds",
+      "Pinch of cinnamon powder",
+      "1 tsp flaxseeds"
     ],
     directions: [
-      "Heat almond milk in a small pot over medium heat.",
-      "Whisk in turmeric, ginger, black pepper, and cinnamon.",
-      "Bring to a light simmer (do not boil).",
-      "Remove from heat and stir in honey.",
-      "Pour into mug and sprinkle extra cinnamon."
+      "Spoon Greek yogurt into a bowl.",
+      "Arrange fresh strawberries and seeds on top.",
+      "Dust with cinnamon and ground flaxseeds.",
+      "Mix gently and enjoy."
     ],
-    benefits: "Curcumin in turmeric is highly anti-inflammatory, while black pepper boosts its bioavailability by up to 2000%."
+    benefits: "Probiotics in yogurt optimize estrogen clearance, while pumpkin seeds provide zinc to boost progesterone production."
   },
   {
-    title: "Stuffed Sweet Potato & Greens",
+    title: "🥣 Lentil & Vegetable Soup",
     category: "Recipe 10 • Dinner Selection",
     calories: "320 kcal",
     protein: "8g",
@@ -735,20 +735,20 @@ const customRecipeData = [
     fiber: "8g",
     img: "https://images.unsplash.com/photo-1596797038530-2c107229654b?auto=format&fit=crop&w=600&q=80",
     ingredients: [
-      "1 Medium Sweet Potato",
-      "1 cup Kale or spinach (chopped)",
-      "2 tbsp Sesame tahini dressing",
-      "1 tbsp raw pumpkin seeds",
-      "Pinch of salt, paprika, cumin"
+      "1/2 cup brown lentils",
+      "1 cup mixed veggies (carrots, celery)",
+      "3 cups vegetable broth",
+      "1 bay leaf & garlic",
+      "Salt, pepper, olive oil"
     ],
     directions: [
-      "Wash potato, poke with fork, bake at 200°C for 45 mins.",
-      "Sauté kale in a pan with garlic and oil for 2 mins.",
-      "Slice baked potato open lengthwise and fluff inside.",
-      "Stuff with sautéed kale.",
-      "Drizzle tahini dressing and top with pumpkin seeds."
+      "Sauté minced garlic, celery, and carrots in olive oil.",
+      "Add rinsed lentils, vegetable broth, and bay leaf.",
+      "Bring to a boil, then reduce heat to low.",
+      "Cover and simmer for 25 minutes until lentils are soft.",
+      "Discard bay leaf, season with salt and pepper, serve warm."
     ],
-    benefits: "Sweet potatoes are rich in beta-carotene and vitamin B6, which supports progesterone production in the luteal phase."
+    benefits: "Lentils are excellent sources of iron, zinc, and potassium to support thyroid function and keep you full longer."
   }
 ];
 
