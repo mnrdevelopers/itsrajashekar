@@ -1879,6 +1879,13 @@ async function triggerPDFDownload() {
   element.style.width = '900px';
   element.style.background = '#ffd9e8';
   element.style.color = '#222222';
+  element.style.position = 'fixed';
+  element.style.left = '-9999px';
+  element.style.top = '0';
+  element.style.zIndex = '-9999';
+  element.style.margin = '0';
+  element.style.padding = '0';
+  element.style.border = 'none';
   
   const userPages = [
     "pages/01.jpg",
@@ -1897,19 +1904,26 @@ async function triggerPDFDownload() {
   
   for (let idx = 0; idx < 14; idx++) {
     const pageClone = document.createElement('div');
+    pageClone.className = 'html2pdf__page-break';
     pageClone.style.width = '900px';
     pageClone.style.height = '1125px'; // 4:5 ratio
-    pageClone.style.pageBreakAfter = 'always';
-    pageClone.style.pageBreakInside = 'avoid';
     pageClone.style.boxShadow = 'none';
     pageClone.style.margin = '0';
     pageClone.style.padding = '0';
     pageClone.style.border = 'none';
+    pageClone.style.boxSizing = 'border-box';
     pageClone.style.display = 'flex';
     pageClone.style.flexDirection = 'column';
     pageClone.style.justifyContent = 'space-between';
     pageClone.style.position = 'relative';
     pageClone.style.overflow = 'hidden';
+    pageClone.style.pageBreakInside = 'avoid';
+
+    if (idx < 13) {
+      pageClone.style.pageBreakAfter = 'always';
+    } else {
+      pageClone.style.pageBreakAfter = 'avoid';
+    }
 
     if (idx < 12) {
       const imgPath = userPages[idx];
@@ -1949,7 +1963,7 @@ async function triggerPDFDownload() {
     image: { type: 'jpeg', quality: 0.98 },
     html2canvas: { scale: 2, useCORS: true, logging: false },
     jsPDF: { unit: 'px', format: [900, 1125], hotfixes: ['px_scaling'] },
-    pagebreak: { mode: ['avoid-all', 'css'] }
+    pagebreak: { mode: ['css', 'legacy'] }
   };
   
   try {
