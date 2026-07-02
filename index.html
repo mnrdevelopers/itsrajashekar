@@ -106,11 +106,12 @@
     
     <div class="sidebar-search-box">
       <i class="fa-solid fa-magnifying-glass search-icon"></i>
-      <input type="text" id="recipe-search" placeholder="Search recipe or ingredients..." aria-label="Search recipes">
+      <input type="text" id="recipe-search" placeholder="Search pages or recipes..." aria-label="Search recipes">
       <button id="search-clear-btn" class="search-clear-btn" aria-label="Clear Search"><i class="fa-solid fa-circle-xmark"></i></button>
     </div>
 
-    <div class="sidebar-tabs">
+    <!-- Hidden tabs for image book mode -->
+    <div class="sidebar-tabs" style="display: none !important;">
       <button id="tab-recipes" class="sidebar-tab active">Recipes</button>
       <button id="tab-favorites" class="sidebar-tab">Favorites <span id="fav-count-badge" class="badge">0</span></button>
     </div>
@@ -121,7 +122,7 @@
       </ul>
       <div id="no-search-results" class="no-results-message hidden">
         <i class="fa-solid fa-utensils"></i>
-        <p>No recipes match your search.</p>
+        <p>No pages match your search.</p>
       </div>
     </div>
   </aside>
@@ -140,7 +141,7 @@
         <button id="hud-bookmark-btn" class="hud-btn" data-tooltip="Save Bookmark" aria-label="Save Bookmark">
           <i class="fa-regular fa-bookmark"></i>
         </button>
-        <button id="hud-favorite-btn" class="hud-btn" data-tooltip="Add to Favorites" aria-label="Add to Favorites">
+        <button id="hud-favorite-btn" class="hud-btn" data-tooltip="Add to Favorites" aria-label="Add to Favorites" style="display: none !important;">
           <i class="fa-regular fa-heart"></i>
         </button>
         <button id="hud-share-btn" class="hud-btn" data-tooltip="Share Book" aria-label="Share Book">

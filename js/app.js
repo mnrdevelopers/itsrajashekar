@@ -1876,47 +1876,72 @@ async function triggerPDFDownload() {
   
   const element = document.createElement('div');
   element.className = 'pdf-print-container';
-  element.style.width = '800px';
-  element.style.background = '#faf6f0';
-  element.style.color = '#2d2624';
+  element.style.width = '900px';
+  element.style.background = '#ffd9e8';
+  element.style.color = '#222222';
   
-  // Clone pages
-  const pages = document.querySelectorAll('.page-content');
-  pages.forEach((page, idx) => {
-    const pageClone = page.cloneNode(true);
-    pageClone.style.width = '800px';
-    pageClone.style.height = '1066px'; // Perfect 3:4 ratio for printing
+  const userPages = [
+    "pages/01.jpg",
+    "pages/02.png",
+    "pages/03.jpg",
+    "pages/04.jpg",
+    "pages/05.jpg",
+    "pages/06.png",
+    "pages/07.png",
+    "pages/08.png",
+    "pages/09.png",
+    "pages/10.png",
+    "pages/11.png",
+    "pages/12.png"
+  ];
+  
+  for (let idx = 0; idx < 14; idx++) {
+    const pageClone = document.createElement('div');
+    pageClone.style.width = '900px';
+    pageClone.style.height = '1125px'; // 4:5 ratio
     pageClone.style.pageBreakAfter = 'always';
-    pageClone.style.padding = '60px 50px';
     pageClone.style.boxShadow = 'none';
-    pageClone.style.background = '#faf6f0';
     pageClone.style.display = 'flex';
     pageClone.style.flexDirection = 'column';
     pageClone.style.justifyContent = 'space-between';
+    pageClone.style.position = 'relative';
+    pageClone.style.overflow = 'hidden';
+
+    if (idx < 12) {
+      const imgPath = userPages[idx];
+      const bgColor = idx === 0 ? '#fdf0f0' : '#ffd9e8';
+      pageClone.style.backgroundColor = bgColor;
+      pageClone.innerHTML = `
+        <div class="page-content image-mode-page" style="padding: 0; width: 100%; height: 100%;">
+          <img src="${imgPath}" alt="Page ${idx + 1}" style="width: 100%; height: 100%; object-fit: contain; display: block;" />
+        </div>
+      `;
+    } else if (idx === 12) {
+      pageClone.style.backgroundColor = '#ffd9e8';
+      pageClone.innerHTML = getThankYouPageHTML();
+      const wave = pageClone.querySelector('.wave');
+      if (wave) wave.style.opacity = '0.3';
+    } else {
+      pageClone.style.backgroundColor = 'var(--color-pink-primary)';
+      pageClone.innerHTML = `
+        <div class="page-content cover-back-layout" style="justify-content: center; align-items: center; height: 100%; width: 100%; display: flex; flex-direction: column; padding: 40px; background-color: var(--color-pink-primary);">
+          <div class="cover-back-logo" style="color: white; font-weight: 800; font-size: 2rem;">Its_rajashekar_12</div>
+          <div style="width: 40px; height: 1px; background-color: white; margin-top: 12px; margin-bottom: 12px;"></div>
+          <p style="font-size: 0.95rem; color: rgba(255, 255, 255, 0.9); margin: 0;">
+            <i class="fa-brands fa-instagram" style="margin-right: 5px;"></i> @Its_rajashekar_12
+          </p>
+        </div>
+      `;
+    }
     
-    // Resolve dynamic lazy loaded images inside clone
-    const lazyImgs = pageClone.querySelectorAll('img.lazy-load');
-    lazyImgs.forEach((img) => {
-      const originalImg = page.querySelector('img');
-      if (originalImg && originalImg.src) {
-        img.src = originalImg.src;
-      }
-    });
-
-    // Remove buttons, hints
-    const hint = pageClone.querySelector('.page-corner-hint');
-    if (hint) hint.remove();
-    const favHeart = pageClone.querySelector('.fav-heart-icon');
-    if (favHeart) favHeart.parentNode.remove();
-
     element.appendChild(pageClone);
-  });
+  }
   
   document.body.appendChild(element);
   
   const options = {
     margin: 0,
-    filename: 'L-Art-de-la-Cuisine-Cookbook.pdf',
+    filename: '10-Best-PCOS-Thyroid-Recipes.pdf',
     image: { type: 'jpeg', quality: 0.98 },
     html2canvas: { scale: 1.5, useCORS: true, logging: false },
     jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
