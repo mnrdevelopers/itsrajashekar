@@ -2073,17 +2073,23 @@ function applyZoomTransform() {
 async function initApp() {
   // A. Check for custom page images in /pages
   // Update preloader percentage
-  updateProgress(15, "Scanning pages...");
-  const images = await scanPagesFolder();
+  // Bypassed scanning to eliminate 404 console errors since we are statically using your 12 recipe images
+  currentMode = 'image';
+  detectedImages = [
+    "pages/01.jpg",
+    "pages/02.png",
+    "pages/03.jpg",
+    "pages/04.jpg",
+    "pages/05.jpg",
+    "pages/06.png",
+    "pages/07.png",
+    "pages/08.png",
+    "pages/09.png",
+    "pages/10.png",
+    "pages/11.png",
+    "pages/12.png"
+  ];
   updateProgress(45, "Loading layouts...");
-  
-  detectedImages = images;
-  
-  if (images.length > 0) {
-    currentMode = 'image';
-  } else {
-    currentMode = 'html';
-  }
   
   // B. Build the book structure inside the DOM
   buildBookDOM();
