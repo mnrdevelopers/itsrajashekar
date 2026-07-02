@@ -1957,7 +1957,7 @@ async function triggerPDFDownload() {
       pageClone.style.backgroundColor = bgColor;
       pageClone.innerHTML = `
         <div class="page-content image-mode-page" style="padding: 0; width: 100%; height: 100%;">
-          <img src="${absoluteImgUrl}" alt="Page ${idx + 1}" style="width: 100%; height: 100%; object-fit: contain; display: block;" />
+          <img src="${absoluteImgUrl}" alt="Page ${idx + 1}" style="width: 100%; height: 100%; object-fit: fill; display: block;" />
         </div>
       `;
     } else if (idx === 12) {
