@@ -1355,7 +1355,7 @@ button, input {
    ========================================================================== */
 
 /* Mobile view layout overrides */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   /* Immersive Full Screen layout on Mobile */
   .viewport {
     width: 100vw !important;

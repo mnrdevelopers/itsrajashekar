@@ -1117,7 +1117,7 @@ function buildBookDOM() {
     bookElement.appendChild(pageDiv);
   }
   
-  const isPortrait = window.innerWidth <= 768;
+  const isPortrait = window.innerWidth <= 1024 || (window.innerHeight > window.innerWidth);
   if (isPortrait) {
     bookElement.style.width = '100%';
     bookElement.style.height = '100%';
@@ -1343,7 +1343,7 @@ function initPageFlip() {
 
   // Determine viewport dimension to set sizing appropriately
   const viewportWidth = window.innerWidth;
-  const isPortrait = viewportWidth <= 768;
+  const isPortrait = viewportWidth <= 1024 || (window.innerHeight > viewportWidth);
 
   // Initialize
   pageFlip = new PageFlipClass(bookElement, {
@@ -1455,7 +1455,7 @@ function updateHUDPageIndicator(pageIndex) {
   } else if (pageIndex === maxPage - 1) {
     indicator.textContent = `Back Cover (${maxPage} of ${maxPage})`;
   } else {
-    const isPortrait = window.innerWidth <= 768 || pageFlip.getOrientation() === 'portrait';
+    const isPortrait = window.innerWidth <= 1024 || (window.innerHeight > window.innerWidth) || pageFlip.getOrientation() === 'portrait';
     if (isPortrait) {
       indicator.textContent = `Page ${pageIndex + 1} of ${maxPage}`;
     } else {
@@ -1927,11 +1927,12 @@ async function triggerPDFDownload() {
 
     if (idx < 12) {
       const imgPath = userPages[idx];
+      const absoluteImgUrl = new URL(imgPath, window.location.href).href;
       const bgColor = idx === 0 ? '#fdf0f0' : '#ffd9e8';
       pageClone.style.backgroundColor = bgColor;
       pageClone.innerHTML = `
         <div class="page-content image-mode-page" style="padding: 0; width: 100%; height: 100%;">
-          <img src="${imgPath}" alt="Page ${idx + 1}" style="width: 100%; height: 100%; object-fit: contain; display: block;" />
+          <img src="${absoluteImgUrl}" alt="Page ${idx + 1}" style="width: 100%; height: 100%; object-fit: contain; display: block;" />
         </div>
       `;
     } else if (idx === 12) {
@@ -2317,7 +2318,7 @@ function setupEventListeners() {
   // Re-adjust page-flip responsive bounds on resize
   window.addEventListener('resize', () => {
     if (pageFlip) {
-      const isPortrait = window.innerWidth <= 768;
+      const isPortrait = window.innerWidth <= 1024 || (window.innerHeight > window.innerWidth);
       if (isPortrait) {
         bookElement.style.width = '100%';
         bookElement.style.height = '100%';
