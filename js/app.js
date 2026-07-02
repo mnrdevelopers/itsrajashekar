@@ -1023,6 +1023,35 @@ function initFloatingHearts(container) {
 }
 
 /* ==========================================================================
+   RESPONSIVE BOOK RESIZER
+   ========================================================================== */
+function resizeBookContainer() {
+  const isPortrait = window.innerWidth <= 1024 || (window.innerHeight > window.innerWidth);
+  if (isPortrait) {
+    bookElement.style.width = '100vw';
+    bookElement.style.height = '100vh';
+  } else {
+    const ratio = 1.6;
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+    
+    if (windowWidth / windowHeight > ratio) {
+      // Wide screen: fit height
+      const targetHeight = windowHeight;
+      const targetWidth = targetHeight * ratio;
+      bookElement.style.width = `${targetWidth}px`;
+      bookElement.style.height = `${targetHeight}px`;
+    } else {
+      // Tall screen: fit width
+      const targetWidth = windowWidth;
+      const targetHeight = targetWidth / ratio;
+      bookElement.style.width = `${targetWidth}px`;
+      bookElement.style.height = `${targetHeight}px`;
+    }
+  }
+}
+
+/* ==========================================================================
    BOOK BUILDER (HTML VS IMAGE)
    ========================================================================== */
 function buildBookDOM() {
@@ -1117,14 +1146,7 @@ function buildBookDOM() {
     bookElement.appendChild(pageDiv);
   }
   
-  const isPortrait = window.innerWidth <= 1024 || (window.innerHeight > window.innerWidth);
-  if (isPortrait) {
-    bookElement.style.width = '100%';
-    bookElement.style.height = '100%';
-  } else {
-    bookElement.style.width = '1800px';
-    bookElement.style.height = '1125px';
-  }
+  resizeBookContainer();
 }
 
 function getFallbackHTMLContent(idx, totalPages) {
@@ -2324,14 +2346,7 @@ function setupEventListeners() {
   // Re-adjust page-flip responsive bounds on resize
   window.addEventListener('resize', () => {
     if (pageFlip) {
-      const isPortrait = window.innerWidth <= 1024 || (window.innerHeight > window.innerWidth);
-      if (isPortrait) {
-        bookElement.style.width = '100%';
-        bookElement.style.height = '100%';
-      } else {
-        bookElement.style.width = '1800px';
-        bookElement.style.height = '1125px';
-      }
+        resizeBookContainer();
       pageFlip.update();
     }
   });
