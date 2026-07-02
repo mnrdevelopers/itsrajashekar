@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="pinkGrad" cx="50%" cy="50%" r="50%" fx="30%" fy="30%">
+      <stop offset="0%" stop-color="#fff5f5" />
+      <stop offset="100%" stop-color="#fcdad7" />
+    </radialGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f3d078" />
+      <stop offset="50%" stop-color="#d4af37" />
+      <stop offset="100%" stop-color="#aa8314" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#db9595" flood-opacity="0.3" />
+    </filter>
+  </defs>
+
+  <!-- Background Circle with subtle gradient -->
+  <circle cx="256" cy="256" r="240" fill="url(#pinkGrad)" stroke="#db9595" stroke-width="4" />
+
+  <!-- Inner decorative ring -->
+  <circle cx="256" cy="256" r="220" fill="none" stroke="url(#goldGrad)" stroke-width="2" stroke-dasharray="8 6" opacity="0.6" />
+
+  <!-- Gold Emblem Group -->
+  <g filter="url(#shadow)" transform="translate(106, 106)">
+    <!-- Cloche Dome -->
+    <path d="M50 200 C50 110, 110 65, 150 65 S250 110, 250 200" fill="none" stroke="url(#goldGrad)" stroke-width="12" stroke-linecap="round" />
+    
+    <!-- Cloche Base -->
+    <path d="M30 216 H270" stroke="url(#goldGrad)" stroke-width="14" stroke-linecap="round" />
+    
+    <!-- Cloche Knob -->
+    <circle cx="150" cy="50" r="14" fill="url(#goldGrad)" />
+    
+    <!-- Flourishes/Steam (Feminine elegant lines) -->
+    <path d="M125 32 C120 18, 130 10, 125 0" fill="none" stroke="url(#goldGrad)" stroke-width="6" stroke-linecap="round" />
+    <path d="M150 30 C150 14, 160 8, 150 0" fill="none" stroke="url(#goldGrad)" stroke-width="6" stroke-linecap="round" />
+    <path d="M175 32 C170 18, 180 10, 175 0" fill="none" stroke="url(#goldGrad)" stroke-width="6" stroke-linecap="round" />
+    
+    <!-- Elegant Chef Hat Ribbon accent -->
+    <path d="M90 216 C90 190, 210 190, 210 216" fill="none" stroke="url(#goldGrad)" stroke-width="4" opacity="0.4" />
+  </g>
+</svg>

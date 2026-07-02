@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>10 Best PCOS &amp; Thyroid Friendly Recipes For Women</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Discover the 10 Best PCOS &amp; Thyroid Friendly Recipes for Women. An interactive digital cookbook with healthy, hormone-balancing, and nourishing dishes.">
+  <meta name="keywords" content="PCOS recipes, Thyroid recipes, women health, hormone balance, recipe flipbook, 3D page turn, healthy recipes, cookbook">
+  <meta name="author" content="Its_rajashekar_12">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://cookbook.itsrajashekar.com/">
+  <meta property="og:title" content="10 Best PCOS &amp; Thyroid Friendly Recipes For Women">
+  <meta property="og:description" content="Immerse yourself in a luxury hormone-balancing cookbook. Features fluid 3D animations, custom healthy recipes, and easy search.">
+  <meta property="og:image" content="pages/01.jpg">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://cookbook.itsrajashekar.com/">
+  <meta property="twitter:title" content="10 Best PCOS &amp; Thyroid Friendly Recipes For Women">
+  <meta property="twitter:description" content="Immerse yourself in a luxury hormone-balancing cookbook. Features fluid 3D animations, custom healthy recipes, and easy search.">
+  <meta property="twitter:image" content="pages/01.jpg">
+
+  <!-- PWA & Mobile Web App Meta -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="CulinaryBook">
+  <meta name="theme-color" content="#fdf0f0">
+  <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
+  <link rel="apple-touch-icon" href="icons/icon.svg">
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Core Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+
+  <!-- Loading Preloader Overlay -->
+  <div id="loading-overlay" class="loading-overlay">
+    <div class="loader-content">
+      <div class="logo-wrapper">
+        <svg class="chef-cloche" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <path class="cloche-base" d="M15 80h70v5H15z" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+          <path class="cloche-dome" d="M20 75c0-30 20-45 30-45s30 15 30 45" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+          <circle class="cloche-knob" cx="50" cy="24" r="5" fill="currentColor"/>
+          <path class="steam-line line-1" d="M40 18c-2-5 2-8 0-12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path class="steam-line line-2" d="M50 16c0-5 3-7 1-11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path class="steam-line line-3" d="M60 18c2-5-2-8 0-12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h1 class="loader-title">Hormone Balance</h1>
+      <p class="loader-subtitle">Preparing nourishing recipes...</p>
+      <div class="progress-container">
+        <div class="progress-ring-wrapper">
+          <svg class="progress-ring" width="80" height="80">
+            <circle class="progress-ring-circle-bg" stroke="rgba(219, 149, 149, 0.15)" stroke-width="4" fill="transparent" r="34" cx="40" cy="40"/>
+            <circle id="progress-circle" class="progress-ring-circle" stroke="currentColor" stroke-width="4" fill="transparent" r="34" cx="40" cy="40"/>
+          </svg>
+          <div id="progress-text" class="progress-text">0%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Background Ambience (Blurry shapes & table wood) -->
+  <div class="ambient-background">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="table-surface"></div>
+  </div>
+
+  <!-- Main Viewport containing the book -->
+  <div id="viewport" class="viewport">
+    <div id="zoom-container" class="zoom-container">
+      <div id="book-shadow-wrapper" class="book-shadow-wrapper">
+        <div id="book" class="book">
+          <!-- Pages will be dynamically generated by JS (either loading local images or rendering rich HTML elements) -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sidebar: Table of Contents & Search -->
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+      <h2>Table of Contents</h2>
+      <button id="sidebar-close-btn" class="icon-btn-secondary" aria-label="Close Sidebar">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    
+    <div class="sidebar-search-box">
+      <i class="fa-solid fa-magnifying-glass search-icon"></i>
+      <input type="text" id="recipe-search" placeholder="Search recipe or ingredients..." aria-label="Search recipes">
+      <button id="search-clear-btn" class="search-clear-btn" aria-label="Clear Search"><i class="fa-solid fa-circle-xmark"></i></button>
+    </div>
+
+    <div class="sidebar-tabs">
+      <button id="tab-recipes" class="sidebar-tab active">Recipes</button>
+      <button id="tab-favorites" class="sidebar-tab">Favorites <span id="fav-count-badge" class="badge">0</span></button>
+    </div>
+
+    <div id="toc-list-container" class="toc-list-container">
+      <ul id="toc-list" class="toc-list">
+        <!-- Dynamically loaded from JS -->
+      </ul>
+      <div id="no-search-results" class="no-results-message hidden">
+        <i class="fa-solid fa-utensils"></i>
+        <p>No recipes match your search.</p>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Bottom Interactive HUD controls (Kindle Style Redesign) -->
+  <nav id="controls-hud" class="controls-hud hidden-hud">
+    <!-- Kindle Top Header Bar -->
+    <div class="kindle-top-bar">
+      <div class="kindle-top-left">
+        <button id="hud-toc-btn" class="hud-btn" data-tooltip="Table of Contents" aria-label="Table of Contents">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <span class="kindle-book-title">10 Best PCOS &amp; Thyroid Recipes</span>
+      </div>
+      <div class="kindle-top-right">
+        <button id="hud-bookmark-btn" class="hud-btn" data-tooltip="Save Bookmark" aria-label="Save Bookmark">
+          <i class="fa-regular fa-bookmark"></i>
+        </button>
+        <button id="hud-favorite-btn" class="hud-btn" data-tooltip="Add to Favorites" aria-label="Add to Favorites">
+          <i class="fa-regular fa-heart"></i>
+        </button>
+        <button id="hud-share-btn" class="hud-btn" data-tooltip="Share Book" aria-label="Share Book">
+          <i class="fa-solid fa-share-nodes"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Kindle Bottom Footer Bar -->
+    <div class="kindle-bottom-bar">
+      <div class="kindle-slider-container">
+        <input type="range" id="kindle-page-slider" min="0" max="3" value="0" class="kindle-scrubber" aria-label="Page Scrubber">
+      </div>
+      
+      <div class="kindle-bottom-controls">
+        <!-- Bottom Left: Autoplay, PDF Download, Audio -->
+        <div class="kindle-bottom-left">
+          <button id="hud-play-btn" class="hud-btn" data-tooltip="Auto Play Book" aria-label="Auto Play Book">
+            <i class="fa-solid fa-play"></i>
+          </button>
+          <button id="hud-download-btn" class="hud-btn" data-tooltip="Download CookBook PDF" aria-label="Download CookBook PDF">
+            <i class="fa-solid fa-file-pdf"></i>
+          </button>
+          <div class="audio-control-wrapper">
+            <button id="hud-audio-btn" class="hud-btn" data-tooltip="Ambient Kitchen Music" aria-label="Toggle Background Music">
+              <i class="fa-solid fa-volume-xmark"></i>
+            </button>
+            <div class="volume-slider-popover">
+              <i class="fa-solid fa-book-open flip-sound-icon" title="Flip sound level"></i>
+              <input type="range" id="flip-volume-slider" min="0" max="100" value="50" title="Flip volume" aria-label="Flip sound volume">
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Center: Prev, Indicator, Next -->
+        <div class="kindle-bottom-center">
+          <button id="hud-prev-btn" class="hud-btn circle-btn" data-tooltip="Previous Page" aria-label="Previous Page">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <div class="indicator-group" style="display: flex; flex-direction: column; align-items: center;">
+            <span id="hud-page-indicator" class="hud-page-indicator">Cover</span>
+            <span class="developer-credit" style="font-size: 9px; opacity: 0.6; color: var(--color-charcoal-light); margin-top: 3px; font-weight: 500; letter-spacing: 0.5px; white-space: nowrap;">Developed by MNR SOFT-TECH SOLUCTIONS</span>
+          </div>
+          <button id="hud-next-btn" class="hud-btn circle-btn" data-tooltip="Next Page" aria-label="Next Page">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+
+        <!-- Bottom Right: Zoom, Dark Mode, Fullscreen -->
+        <div class="kindle-bottom-right">
+          <div class="zoom-controls-wrapper">
+            <button id="hud-zoom-out-btn" class="hud-btn" data-tooltip="Zoom Out" aria-label="Zoom Out">
+              <i class="fa-solid fa-magnifying-glass-minus"></i>
+            </button>
+            <button id="hud-zoom-in-btn" class="hud-btn" data-tooltip="Zoom In" aria-label="Zoom In">
+              <i class="fa-solid fa-magnifying-glass-plus"></i>
+            </button>
+          </div>
+          <button id="hud-darkmode-btn" class="hud-btn" data-tooltip="Toggle Night Mode" aria-label="Toggle Night Mode">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+          <button id="hud-fullscreen-btn" class="hud-btn" data-tooltip="Fullscreen" aria-label="Toggle Fullscreen">
+            <i class="fa-solid fa-expand"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Share Modal Dialog -->
+  <div id="share-modal" class="modal-overlay hidden-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Share Culinary Masterpiece</h3>
+        <button id="share-modal-close" class="icon-btn-secondary" aria-label="Close modal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="share-grid">
+        <a id="share-whatsapp" href="#" target="_blank" class="share-option whatsapp">
+          <i class="fa-brands fa-whatsapp"></i>
+          <span>WhatsApp</span>
+        </a>
+        <a id="share-facebook" href="#" target="_blank" class="share-option facebook">
+          <i class="fa-brands fa-facebook-f"></i>
+          <span>Facebook</span>
+        </a>
+        <a id="share-twitter" href="#" target="_blank" class="share-option twitter">
+          <i class="fa-brands fa-x-twitter"></i>
+          <span>Twitter / X</span>
+        </a>
+        <a id="share-instagram" href="#" class="share-option instagram">
+          <i class="fa-brands fa-instagram"></i>
+          <span>Instagram</span>
+        </a>
+        <button id="share-copylink" class="share-option copylink">
+          <i class="fa-solid fa-link"></i>
+          <span>Copy Link</span>
+        </button>
+        <button id="share-native" class="share-option native-share hidden">
+          <i class="fa-solid fa-circle-nodes"></i>
+          <span>More Options</span>
+        </button>
+      </div>
+      <div class="qr-code-section">
+        <h4>Scan QR Code to Read on Mobile</h4>
+        <div id="qr-code-placeholder" class="qr-code-placeholder">
+          <!-- JS will render a custom SVG QR Code here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Audio elements fallback (ambient sound) -->
+  <audio id="bg-ambient-music" loop>
+    <!-- Royalty free background track: soft piano / culinary ambient -->
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="toast hidden-toast" role="alert">
+    <span id="toast-message">Page bookmarked!</span>
+  </div>
+
+  <!-- Application Logic -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

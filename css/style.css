@@ -1,0 +1,2323 @@
+/* ==========================================================================
+   PREMIUM CULINARY FLIPBOOK DESIGN SYSTEM
+   Theme: Luxury, Elegant, Modern, Feminine, Premium
+   Colors: Dusty Pink, Gold Accents, Ivory Paper, Rich Espresso Table
+   ========================================================================== */
+
+:root {
+  --font-heading: 'Poppins', system-ui, -apple-system, sans-serif;
+  --font-body: 'Poppins', system-ui, -apple-system, sans-serif;
+  --font-decorative: 'Great Vibes', cursive;
+  
+  /* Palette */
+  --color-pink-primary: #F75A9C;
+  --color-pink-light: #FFF4F8;
+  --color-pink-dark: #FF8EB8;
+  --color-pink-secondary: #FFC7DD;
+  --color-ivory: #FFF4F8;
+  --color-charcoal: #222222;
+  --color-charcoal-light: #666666;
+  --color-white: #ffffff;
+  
+  /* Glassmorphism Defaults */
+  --glass-bg: rgba(255, 255, 255, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.45);
+  --glass-shadow: 0 8px 32px 0 rgba(247, 90, 156, 0.12);
+  --glass-blur: blur(12px);
+  
+  /* Animation Speeds */
+  --transition-fast: 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --transition-medium: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --transition-slow: 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Dark Mode Theme Variables */
+.dark-mode {
+  --color-pink-light: #121212;
+  --color-pink-primary: #b87070;
+  --color-ivory: #1a1a1a;
+  --color-charcoal: #e5e5e7;
+  --color-charcoal-light: #c7c7cc;
+  --glass-bg: rgba(26, 26, 26, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+  --color-white: #1a1a1a;
+  background-color: #121212 !important;
+}
+
+/* Reset & Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font-body);
+  color: var(--color-charcoal);
+  background-color: #f6f6f6;
+  user-select: none;
+}
+
+button, input {
+  font-family: inherit;
+}
+
+/* ==========================================================================
+   LOADING OVERLAY
+   ========================================================================== */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, #ffffff 0%, var(--color-pink-light) 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  transition: opacity var(--transition-slow), visibility var(--transition-slow);
+}
+
+.dark-mode .loading-overlay {
+  background: radial-gradient(circle at center, #2d2624 0%, #150e0d 100%);
+}
+
+.loader-content {
+  text-align: center;
+  max-width: 320px;
+}
+
+.logo-wrapper {
+  margin-bottom: 24px;
+}
+
+.chef-cloche {
+  width: 90px;
+  height: 90px;
+  color: var(--color-pink-primary);
+  animation: clocheFloat 3s ease-in-out infinite;
+}
+
+.cloche-dome {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 0;
+  animation: drawStroke 2.5s ease-in-out infinite alternate;
+}
+
+.steam-line {
+  stroke-dasharray: 20;
+  stroke-dashoffset: 20;
+  animation: steamRise 1.5s ease-in-out infinite;
+}
+
+.line-1 { animation-delay: 0.1s; }
+.line-2 { animation-delay: 0.4s; }
+.line-3 { animation-delay: 0.7s; }
+
+.loader-title {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--color-charcoal);
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
+.loader-subtitle {
+  font-size: 0.9rem;
+  color: var(--color-charcoal-light);
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.progress-container {
+  display: flex;
+  justify-content: center;
+}
+
+.progress-ring-wrapper {
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.progress-ring {
+  transform: rotate(-90deg);
+}
+
+.progress-ring-circle {
+  color: var(--color-pink-primary);
+  stroke-dasharray: 213.62; /* 2 * PI * r (34) */
+  stroke-dashoffset: 213.62;
+  transition: stroke-dashoffset 0.1s;
+}
+
+.progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-pink-dark);
+}
+
+/* ==========================================================================
+   AMBIENT BACKGROUND & WOOD TABLE
+   ========================================================================== */
+.ambient-background {
+  display: none !important;
+}
+
+.table-surface {
+  display: none !important;
+}
+
+/* Kindle Ambient Canvas style */
+.ambient-vignette {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: #f6f6f6;
+  transition: background-color var(--transition-medium);
+}
+
+.dark-mode .ambient-vignette {
+  background-color: #121212;
+}
+
+.table-surface {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 85%;
+  background-image: url('https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=1600&q=80');
+  background-size: cover;
+  background-position: center;
+  box-shadow: inset 0 30px 60px rgba(0,0,0,0.8);
+  transform: perspective(800px) rotateX(18deg);
+  transform-origin: bottom center;
+  filter: brightness(0.55) contrast(1.15);
+}
+
+.dark-mode .table-surface {
+  filter: brightness(0.35) contrast(1.2);
+}
+
+/* Luxury glossy finish overlay */
+.table-surface::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 30%, rgba(255,255,255,0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   VIEWPORT & ZOOM CONTAINER
+   ========================================================================== */
+.viewport {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 2000px;
+  overflow: hidden;
+}
+
+.zoom-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform var(--transition-medium);
+  transform-origin: center center;
+}
+
+/* ==========================================================================
+   BOOK WRAPPER & COVER ROTATION (3D)
+   ========================================================================== */
+.book-shadow-wrapper {
+  position: relative;
+  filter: drop-shadow(0 8px 30px rgba(0, 0, 0, 0.12));
+  transition: filter var(--transition-medium);
+}
+
+.dark-mode .book-shadow-wrapper {
+  filter: drop-shadow(0 8px 30px rgba(0, 0, 0, 0.6));
+}
+
+.book {
+  position: relative;
+  visibility: hidden; /* Hidden until loaded & initialized */
+  transform-style: preserve-3d;
+  background-size: cover;
+  transition: transform var(--transition-medium);
+}
+
+/* 3D Spine Crease Shadow overlay when opened */
+.book.book-opened::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50px;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    rgba(0, 0, 0, 0.25) 0%, 
+    rgba(0, 0, 0, 0.08) 30%, 
+    transparent 50%, 
+    rgba(0, 0, 0, 0.08) 70%, 
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  transform: translateX(-50%);
+  z-index: 100;
+  pointer-events: none;
+  border-radius: 2px;
+}
+
+/* ==========================================================================
+   PAGES STYLE
+   ========================================================================== */
+.page {
+  position: relative;
+  background-color: var(--color-ivory);
+  overflow: hidden;
+  box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.05);
+}
+
+/* Soft stack shadows to simulate layered paper thickness */
+.page-left::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(0,0,0,0.06) 0%, transparent 10%, transparent 90%, rgba(0,0,0,0.12) 100%);
+  pointer-events: none;
+  z-index: 99;
+}
+
+.page-right::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to left, rgba(0,0,0,0.06) 0%, transparent 10%, transparent 90%, rgba(0,0,0,0.12) 100%);
+  pointer-events: none;
+  z-index: 99;
+}
+
+/* Procedural paper texture background overlay on all pages */
+.page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.045 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.7;
+}
+
+/* Hardcover (Density=Hard) */
+.page[data-density="hard"] {
+  background-color: var(--color-pink-primary);
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.3);
+  border-radius: 4px;
+}
+
+/* Inner Page Container */
+.page-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  z-index: 3;
+}
+
+/* Page corners styling for curl cues */
+.page-corner-hint {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  bottom: 0;
+  right: 0;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.page-corner-hint::after {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  width: 15px;
+  height: 15px;
+  border-bottom: 2px solid rgba(184, 112, 112, 0.4);
+  border-right: 2px solid rgba(184, 112, 112, 0.4);
+  transition: border var(--transition-fast);
+}
+
+.page-corner-hint:hover::after {
+  border-color: var(--color-pink-primary);
+}
+
+/* ==========================================================================
+   LUXURY COVER PAGE DESIGN (FRONT & BACK)
+   ========================================================================== */
+.cover-layout {
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  color: var(--color-white);
+  border: 12px double rgba(255, 255, 255, 0.2);
+  height: calc(100% - 20px);
+  margin: 10px;
+  padding: 40px 20px;
+  position: relative;
+}
+
+/* Golden embossed corner decorations on covers */
+.cover-layout::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  pointer-events: none;
+}
+
+.cover-header {
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-top: 20px;
+  font-weight: 500;
+}
+
+.cover-title-group {
+  margin: auto 0;
+}
+
+.cover-title {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  font-weight: 600;
+  line-height: 1.15;
+  color: #fff;
+  margin-bottom: 15px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.cover-divider {
+  width: 80px;
+  height: 2px;
+  background-color: var(--color-gold);
+  margin: 20px auto;
+}
+
+.cover-subtitle {
+  font-size: 1.1rem;
+  font-style: italic;
+  font-family: var(--font-heading);
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 1px;
+}
+
+.cover-footer {
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 20px;
+}
+
+.cover-back-layout {
+  justify-content: center;
+  align-items: center;
+  color: var(--color-white);
+  border: 12px double rgba(255, 255, 255, 0.2);
+  height: calc(100% - 20px);
+  margin: 10px;
+  padding: 40px;
+}
+
+.cover-back-logo {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  color: var(--color-gold);
+  margin-bottom: 10px;
+}
+
+/* ==========================================================================
+   RECIPE PAGES STYLING (HTML MODE FALLBACK)
+   ========================================================================== */
+.recipe-layout {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Image background cover page style */
+.page-bg-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.page-bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.6) 80%);
+  z-index: 2;
+}
+
+/* Page numbers and footer */
+.page-num {
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  color: var(--color-charcoal-light);
+  font-weight: 500;
+  position: absolute;
+  bottom: 20px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.page-left .page-num {
+  left: 40px;
+}
+
+.page-right .page-num {
+  right: 40px;
+  flex-direction: row-reverse;
+}
+
+/* Recipe Content Layout (Left Page: Title & Details, Right Page: Ingredients & Steps) */
+.recipe-page-header {
+  margin-bottom: 20px;
+}
+
+.recipe-category {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--color-pink-dark);
+  letter-spacing: 2px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.recipe-title {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  line-height: 1.15;
+  color: var(--color-charcoal);
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.recipe-desc {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--color-charcoal-light);
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+.recipe-metadata-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  border-top: 1px solid rgba(219, 149, 149, 0.2);
+  border-bottom: 1px solid rgba(219, 149, 149, 0.2);
+  padding: 15px 0;
+  margin-bottom: 24px;
+}
+
+.meta-item {
+  text-align: center;
+}
+
+.meta-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-charcoal-light);
+  margin-bottom: 4px;
+}
+
+.meta-val {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-pink-dark);
+}
+
+.recipe-img-box {
+  flex: 1;
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  margin-bottom: 10px;
+}
+
+.recipe-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.recipe-sec-title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  color: var(--color-charcoal);
+  margin-bottom: 12px;
+  border-bottom: 2px solid var(--color-pink-light);
+  padding-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.recipe-sec-title i {
+  color: var(--color-pink-primary);
+  font-size: 0.95rem;
+}
+
+.ingredients-list {
+  list-style: none;
+  margin-bottom: 24px;
+}
+
+.ingredients-list li {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  padding: 6px 0;
+  border-bottom: 1px dashed rgba(219, 149, 149, 0.15);
+  display: flex;
+  justify-content: space-between;
+}
+
+.ing-qty {
+  font-weight: 600;
+  color: var(--color-pink-dark);
+}
+
+.directions-list {
+  list-style: none;
+  counter-reset: directions-counter;
+}
+
+.directions-list li {
+  position: relative;
+  padding-left: 36px;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  color: var(--color-charcoal-light);
+}
+
+.directions-list li::before {
+  counter-increment: directions-counter;
+  content: counter(directions-counter);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 24px;
+  height: 24px;
+  background-color: var(--color-pink-primary);
+  color: var(--color-white);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Image Mode Page Styles */
+.image-mode-page {
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.image-mode-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: filter var(--transition-medium);
+}
+
+.dark-mode .image-mode-img {
+  filter: invert(0.92) hue-rotate(180deg) brightness(1.05) contrast(1.05);
+}
+
+/* ==========================================================================
+   SIDEBAR (TABLE OF CONTENTS)
+   ========================================================================== */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -360px;
+  width: 340px;
+  height: 100vh;
+  z-index: 100;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  border-right: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-medium);
+}
+
+.sidebar.open {
+  transform: translateX(360px);
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 20px 16px;
+  border-bottom: 1px solid rgba(219, 149, 149, 0.15);
+}
+
+.sidebar-header h2 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--color-charcoal);
+}
+
+.sidebar-search-box {
+  position: relative;
+  margin: 15px 20px;
+}
+
+.sidebar-search-box input {
+  width: 100%;
+  padding: 10px 35px 10px 35px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(219, 149, 149, 0.3);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: var(--color-charcoal);
+  outline: none;
+  transition: border var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.sidebar-search-box input:focus {
+  border-color: var(--color-pink-primary);
+  box-shadow: 0 0 10px rgba(219, 149, 149, 0.15);
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-charcoal-light);
+  font-size: 0.85rem;
+}
+
+.search-clear-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-charcoal-light);
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-fast);
+}
+
+.search-clear-btn.visible {
+  opacity: 0.7;
+  pointer-events: auto;
+}
+
+.sidebar-tabs {
+  display: flex;
+  margin: 0 20px 15px;
+  border-bottom: 2px solid rgba(219, 149, 149, 0.1);
+}
+
+.sidebar-tab {
+  flex: 1;
+  padding: 8px 0;
+  background: none;
+  border: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-charcoal-light);
+  cursor: pointer;
+  position: relative;
+  transition: color var(--transition-fast);
+}
+
+.sidebar-tab.active {
+  color: var(--color-pink-primary);
+  font-weight: 600;
+}
+
+.sidebar-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-pink-primary);
+}
+
+.badge {
+  background-color: var(--color-pink-primary);
+  color: var(--color-white);
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 10px;
+  margin-left: 4px;
+}
+
+.toc-list-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 20px 24px;
+}
+
+/* Custom Scrollbar for ToC container */
+.toc-list-container::-webkit-scrollbar {
+  width: 6px;
+}
+.toc-list-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+.toc-list-container::-webkit-scrollbar-thumb {
+  background-color: rgba(219, 149, 149, 0.3);
+  border-radius: 10px;
+}
+
+.toc-list {
+  list-style: none;
+}
+
+.toc-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 10px;
+  border-bottom: 1px solid rgba(219, 149, 149, 0.1);
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background var(--transition-fast), padding var(--transition-fast);
+}
+
+.toc-item:hover {
+  background-color: rgba(219, 149, 149, 0.08);
+  padding-left: 15px;
+}
+
+.toc-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.toc-title {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-charcoal);
+  margin-bottom: 2px;
+}
+
+.toc-desc {
+  font-size: 0.75rem;
+  color: var(--color-charcoal-light);
+}
+
+.toc-page {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-pink-primary);
+}
+
+.no-results-message {
+  text-align: center;
+  padding: 40px 10px;
+  color: var(--color-charcoal-light);
+}
+
+.no-results-message i {
+  font-size: 2rem;
+  color: rgba(219, 149, 149, 0.3);
+  margin-bottom: 12px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ==========================================================================
+   HUD CONTROLS BAR (KINDLE E-BOOK REDESIGN)
+   ========================================================================== */
+.controls-hud {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  pointer-events: none; /* Let clicks pass to the viewport to toggle HUD */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: opacity var(--transition-medium);
+}
+
+.kindle-top-bar {
+  width: 100%;
+  height: 56px;
+  background-color: var(--color-white);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  pointer-events: auto; /* Allow buttons to capture clicks */
+  transition: transform var(--transition-medium);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.kindle-bottom-bar {
+  width: 100%;
+  height: 110px;
+  background-color: var(--color-white);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 12px 20px;
+  pointer-events: auto; /* Allow buttons to capture clicks */
+  transition: transform var(--transition-medium);
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+}
+
+.kindle-slider-container {
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+.kindle-scrubber {
+  width: 100%;
+  height: 4px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  outline: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.kindle-scrubber::-webkit-slider-runnable-track {
+  height: 4px;
+}
+
+.kindle-scrubber::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: var(--color-pink-primary);
+  border: 1px solid var(--color-pink-dark);
+  margin-top: -5px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  transition: transform var(--transition-fast);
+}
+
+.kindle-scrubber::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.kindle-bottom-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.kindle-top-left, .kindle-top-right,
+.kindle-bottom-left, .kindle-bottom-center, .kindle-bottom-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.kindle-book-title {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-charcoal);
+  margin-left: 10px;
+}
+
+.dark-mode .kindle-top-bar,
+.dark-mode .kindle-bottom-bar {
+  background-color: #1a1a1a;
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+}
+
+.dark-mode .kindle-book-title {
+  color: #f5f5f7;
+}
+
+.dark-mode .kindle-scrubber {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.hidden-hud {
+  opacity: 0;
+}
+
+.hidden-hud .kindle-top-bar {
+  transform: translateY(-60px);
+}
+
+.hidden-hud .kindle-bottom-bar {
+  transform: translateY(115px);
+}
+
+.hud-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hud-btn {
+  background: transparent;
+  border: none;
+  color: var(--color-charcoal);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+}
+
+.hud-btn i {
+  font-size: 1.05rem;
+}
+
+.hud-btn span {
+  font-size: 0.55rem;
+  font-weight: 500;
+  margin-top: 2px;
+  display: none; /* Desktop full text hidden by default, visible on wide hover if desired */
+}
+
+.hud-btn:hover {
+  background-color: rgba(219, 149, 149, 0.15);
+  color: var(--color-pink-dark);
+  transform: scale(1.08);
+}
+
+.hud-btn:active {
+  transform: scale(0.95);
+}
+
+/* Tooltips */
+.hud-btn[data-tooltip]::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%) translateY(5px);
+  background: var(--color-charcoal);
+  color: var(--color-white);
+  padding: 6px 12px;
+  font-size: 0.75rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.hud-btn[data-tooltip]:hover::before {
+  opacity: 0.95;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Active buttons styling */
+.hud-btn.active {
+  background-color: var(--color-pink-primary);
+  color: var(--color-white);
+}
+
+.hud-btn.active:hover {
+  background-color: var(--color-pink-dark);
+  color: var(--color-white);
+}
+
+/* Page turning circle navigation buttons */
+.circle-btn {
+  background-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.nav-group {
+  gap: 16px;
+}
+
+.hud-page-indicator {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-charcoal);
+  padding: 6px 16px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 16px;
+  border: 1px solid rgba(219, 149, 149, 0.1);
+  min-width: 80px;
+  text-align: center;
+}
+
+/* Zoom indicators */
+.zoom-controls-wrapper {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  padding: 2px;
+}
+
+/* Volume popover HUD slider */
+.audio-control-wrapper {
+  position: relative;
+}
+
+.volume-slider-popover {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%) scaleY(0);
+  transform-origin: bottom center;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: var(--glass-shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  transition: transform var(--transition-fast);
+  z-index: 95;
+}
+
+.audio-control-wrapper:hover .volume-slider-popover {
+  transform: translateX(-50%) scaleY(1);
+}
+
+.volume-slider-popover input[type="range"] {
+  writing-mode: vertical-lr; /* Vertical layout */
+  direction: rtl;
+  width: 8px;
+  height: 80px;
+  accent-color: var(--color-pink-primary);
+  cursor: pointer;
+}
+
+.flip-sound-icon {
+  font-size: 0.8rem;
+  color: var(--color-charcoal);
+}
+
+/* Icon Buttons Universal */
+.icon-btn-secondary {
+  background: transparent;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: var(--color-charcoal-light);
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.icon-btn-secondary:hover {
+  background-color: rgba(219, 149, 149, 0.15);
+  color: var(--color-pink-dark);
+}
+
+/* ==========================================================================
+   SHARE MODAL DIALOG
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 200;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  backdrop-filter: blur(5px);
+  transition: opacity var(--transition-medium);
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-card {
+  background: var(--color-ivory);
+  border: 1px solid rgba(219, 149, 149, 0.25);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  width: 90%;
+  max-width: 440px;
+  padding: 30px;
+  transform: translateY(20px);
+  transition: transform var(--transition-medium);
+}
+
+.modal-overlay.open .modal-card {
+  transform: translateY(0);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.modal-header h3 {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  color: var(--color-charcoal);
+}
+
+.share-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 24px;
+}
+
+.share-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 6px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--color-charcoal);
+  font-size: 0.75rem;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(219, 149, 149, 0.1);
+  cursor: pointer;
+  transition: transform var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.share-option i {
+  font-size: 1.5rem;
+}
+
+.share-option:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(219, 149, 149, 0.15);
+}
+
+/* Brand Colors override */
+.share-option.whatsapp:hover { background-color: #e8f7f0; color: #25d366; }
+.share-option.facebook:hover { background-color: #e8f0fe; color: #1877f2; }
+.share-option.twitter:hover { background-color: #f0f3f6; color: #000000; }
+.share-option.instagram:hover { background-color: #fef0f4; color: #e1306c; }
+.share-option.copylink:hover { background-color: #f0f0fd; color: #4b4bdf; }
+
+.qr-code-section {
+  text-align: center;
+  border-top: 1px dashed rgba(219, 149, 149, 0.2);
+  padding-top: 20px;
+}
+
+.qr-code-section h4 {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-charcoal-light);
+  margin-bottom: 12px;
+}
+
+.qr-code-placeholder {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(219, 149, 149, 0.15);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.qr-code-placeholder svg {
+  width: 120px;
+  height: 120px;
+}
+
+/* ==========================================================================
+   TOAST NOTIFICATION
+   ========================================================================== */
+.toast {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  z-index: 210;
+  background-color: var(--color-charcoal);
+  color: var(--color-white);
+  padding: 12px 24px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+  opacity: 0;
+  transition: transform var(--transition-medium), opacity var(--transition-medium);
+}
+
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 0.95;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN INTERPOLATION
+   ========================================================================== */
+
+/* Mobile view layout overrides */
+@media (max-width: 768px) {
+  /* Immersive Full Screen layout on Mobile */
+  .viewport {
+    width: 100vw !important;
+    height: 100vh !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .zoom-container {
+    width: 100% !important;
+    height: 100% !important;
+    transform: none !important; /* Disable zoom transform artifacts on mobile */
+  }
+
+  .book-shadow-wrapper {
+    width: 100% !important;
+    height: 100% !important;
+    filter: none !important; /* flat look on mobile */
+    transform: none !important;
+  }
+
+  .book {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .book.book-opened::after {
+    display: none !important;
+  }
+
+  .page {
+    box-shadow: none !important; /* Flat digital pages on mobile */
+  }
+
+  /* Kindle HUD Mobile sizing */
+  .kindle-top-bar {
+    height: 48px;
+    padding: 0 12px;
+  }
+
+  .kindle-bottom-bar {
+    height: 96px;
+    padding: 8px 12px;
+  }
+
+  .kindle-bottom-controls {
+    gap: 8px;
+  }
+
+  .kindle-top-left, .kindle-top-right,
+  .kindle-bottom-left, .kindle-bottom-center, .kindle-bottom-right {
+    gap: 10px;
+  }
+
+  .kindle-book-title {
+    font-size: 0.8rem;
+    max-width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .hud-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .hud-btn i {
+    font-size: 0.9rem;
+  }
+
+  .hud-page-indicator {
+    font-size: 0.7rem;
+    padding: 4px 8px;
+  }
+
+  .hidden-hud .kindle-top-bar {
+    transform: translateY(-50px);
+  }
+
+  .hidden-hud .kindle-bottom-bar {
+    transform: translateY(100px);
+  }
+
+  .page-content {
+    padding: 24px 20px 30px;
+  }
+
+  .recipe-title {
+    font-size: 1.6rem;
+  }
+
+  .recipe-desc {
+    margin-bottom: 12px;
+    font-size: 0.8rem;
+  }
+
+  .recipe-metadata-grid {
+    padding: 8px 0;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .meta-val {
+    font-size: 0.75rem;
+  }
+
+  .recipe-sec-title {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+  }
+
+  .ingredients-list {
+    margin-bottom: 12px;
+  }
+
+  .ingredients-list li {
+    font-size: 0.75rem;
+    padding: 4px 0;
+  }
+
+  .directions-list li {
+    padding-left: 28px;
+    font-size: 0.75rem;
+    margin-bottom: 12px;
+  }
+
+  .directions-list li::before {
+    width: 18px;
+    height: 18px;
+    font-size: 0.65rem;
+  }
+
+  .sidebar {
+    width: 100%;
+    left: -100%;
+  }
+
+  .sidebar.open {
+    transform: translateX(100%);
+  }
+}
+
+/* ==========================================================================
+   ANIMATIONS & KEYFRAMES
+   ========================================================================== */
+@keyframes clocheFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes drawStroke {
+  0% { stroke-dashoffset: 200; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes steamRise {
+  0% {
+    stroke-dashoffset: 20;
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes blobFloat {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(40px, -60px) scale(1.1); }
+  100% { transform: translate(-30px, 20px) scale(0.9); }
+}
+
+/* ==========================================================================
+   HTML PAGES CUSTOM LAYOUTS (COVER & TIPS)
+   ========================================================================== */
+.page-content.cover-html-layout {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #ffd9e8, #ffeef5);
+  border: 1px solid #ffb3cb;
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+}
+
+.cover-html-layout .wave {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 25%;
+  background: radial-gradient(circle at top left, #ffb9d3 10%, transparent 70%);
+  border-bottom-right-radius: 100%;
+  animation: waveMove 8s infinite alternate;
+}
+
+.cover-html-layout .crown {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-top: 30px;
+  animation: bounce 2s infinite;
+}
+
+.cover-html-layout h1 {
+  text-align: center;
+  font-weight: 800;
+  font-size: 2.2rem;
+  line-height: 1.1;
+  margin-top: 15px;
+  color: #111;
+  animation: fadeDown 1s;
+}
+
+.cover-html-layout h1 span {
+  display: block;
+  font-size: 2.8rem;
+  color: #ff4b8c;
+}
+
+.cover-html-layout h2 {
+  font-family: "Great Vibes", cursive;
+  font-size: 3.2rem;
+  color: #f25391;
+  text-align: center;
+  margin-top: 5px;
+  animation: fadeUp 1s;
+}
+
+.cover-html-layout .tagline {
+  position: absolute;
+  right: 25px;
+  top: 45%;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.4;
+  animation: slideRight 1.2s;
+}
+
+.cover-html-layout .heart {
+  position: absolute;
+  right: 50px;
+  top: 12%;
+  font-size: 2.5rem;
+  color: #f85b99;
+  animation: pulse 2s infinite;
+}
+
+.cover-html-layout .bottom {
+  position: absolute;
+  bottom: 45px;
+  left: 20px;
+  right: 20px;
+  background: linear-gradient(90deg, #ff4b8c, #ff7ea7);
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  padding: 10px 18px;
+  color: white;
+  box-shadow: 0 10px 20px rgba(255, 80, 140, 0.2);
+  animation: float 4s infinite;
+}
+
+.cover-html-layout .bottom .icon {
+  font-size: 1.8rem;
+  margin-right: 12px;
+}
+
+.cover-html-layout .bottom h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.cover-html-layout .instagram {
+  position: absolute;
+  bottom: 12px;
+  width: 100%;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #d84a82;
+}
+
+/* Second Page (Tips HTML Layout) styling */
+.page-content.tips-html-layout {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #ffd9e8, #ffeef5);
+  border: 1px solid #ffb3cb;
+  position: relative;
+  overflow: hidden;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.tips-html-layout .wave {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 20%;
+  background: radial-gradient(circle at top left, #ffb9d3 10%, transparent 70%);
+  border-bottom-right-radius: 100%;
+  animation: waveMove 8s infinite alternate;
+}
+
+.tips-html-layout .icon-top {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-top: 15px;
+  animation: bounce 2s infinite;
+  z-index: 2;
+}
+
+.tips-main-title {
+  text-align: center;
+  font-weight: 800;
+  font-size: 2.2rem;
+  color: #F75A9C;
+  letter-spacing: 1px;
+  margin-top: 20px;
+  margin-bottom: 25px;
+  z-index: 2;
+  animation: fadeDown 1s;
+}
+
+.tips-list {
+  list-style: none;
+  padding: 0;
+  z-index: 5;
+  margin-bottom: 25px;
+  animation: fadeUp 1s;
+}
+
+.tips-list li {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #222222;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 500;
+}
+
+.tips-list li i {
+  color: #F75A9C;
+  font-size: 1.1rem;
+  width: 20px;
+}
+
+.limit-section-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  z-index: 5;
+  animation: fadeUp 1.1s;
+}
+
+.limit-line {
+  height: 1px;
+  background-color: rgba(247, 90, 156, 0.3);
+  flex-grow: 1;
+}
+
+.limit-text {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #ff4b8c;
+  letter-spacing: 1.5px;
+}
+
+.limit-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin-bottom: 30px;
+  z-index: 5;
+  animation: fadeUp 1.2s;
+}
+
+.limit-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.limit-circle {
+  width: 54px;
+  height: 54px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 179, 203, 0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  margin-bottom: 8px;
+  box-shadow: 0 4px 10px rgba(255, 80, 140, 0.05);
+  transition: transform var(--transition-fast);
+}
+
+.limit-item:hover .limit-circle {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.limit-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #666666;
+  line-height: 1.2;
+}
+
+.tips-quote-box {
+  background: rgba(255, 255, 255, 0.5);
+  border-left: 3px solid #F75A9C;
+  padding: 12px 18px;
+  border-radius: 0 12px 12px 0;
+  margin-bottom: 30px;
+  z-index: 5;
+  animation: fadeUp 1.3s;
+}
+
+.tips-quote-box p {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: #222222;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.tips-html-layout .instagram {
+  position: absolute;
+  bottom: 12px;
+  width: 100%;
+  left: 0;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #d84a82;
+}
+
+.tips-html-layout .heart {
+  position: absolute;
+  right: 35px;
+  top: 12%;
+  font-size: 2.2rem;
+  color: #f85b99;
+  animation: pulse 2s infinite;
+}
+
+/* ==========================================================================
+   HTML RECIPE PAGES LAYOUT
+   ========================================================================== */
+.page-content.recipe-html-layout {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #ffd9e8, #ffeef5);
+  border: 1px solid #ffb3cb;
+  position: relative;
+  overflow: hidden;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.recipe-html-layout .wave {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 15%;
+  background: radial-gradient(circle at top left, #ffb9d3 10%, transparent 70%);
+  border-bottom-right-radius: 100%;
+  animation: waveMove 8s infinite alternate;
+}
+
+.recipe-html-layout h1 {
+  text-align: center;
+  font-weight: 800;
+  font-size: 1.6rem;
+  color: #111;
+  margin-top: 10px;
+  z-index: 2;
+  animation: fadeDown 1s;
+}
+
+.recipe-html-layout h1 span {
+  display: block;
+  font-size: 0.95rem;
+  color: #d84a82;
+  letter-spacing: 2px;
+  margin-bottom: 2px;
+}
+
+.recipe-html-layout h2 {
+  font-family: "Great Vibes", cursive;
+  font-size: 2.2rem;
+  color: #f25391;
+  text-align: center;
+  margin-top: -2px;
+  margin-bottom: 12px;
+  z-index: 2;
+  animation: fadeUp 1s;
+}
+
+.recipe-html-layout .recipe-body {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 15px;
+  flex-grow: 1;
+  z-index: 5;
+  margin-bottom: 15px;
+  animation: fadeUp 1.2s;
+}
+
+.recipe-html-layout .recipe-section {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 179, 203, 0.4);
+  border-radius: 12px;
+  padding: 12px 15px;
+  box-shadow: 0 4px 15px rgba(255, 80, 140, 0.02);
+  backdrop-filter: blur(5px);
+  overflow-y: auto;
+}
+
+.recipe-html-layout .recipe-section h3 {
+  font-size: 0.95rem;
+  color: #ff4b8c;
+  margin-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 75, 140, 0.2);
+  padding-bottom: 4px;
+}
+
+.recipe-html-layout .recipe-section ul,
+.recipe-html-layout .recipe-section ol {
+  padding-left: 12px;
+}
+
+.recipe-html-layout .recipe-section li {
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: #333;
+  margin-bottom: 6px;
+}
+
+.recipe-html-layout .bottom {
+  background: linear-gradient(90deg, #ff4b8c, #ff7ea7);
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  padding: 8px 18px;
+  color: white;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 20px rgba(255, 80, 140, 0.15);
+  animation: float 4s infinite;
+}
+
+.recipe-html-layout .bottom .icon {
+  font-size: 1.4rem;
+  margin-right: 10px;
+}
+
+.recipe-html-layout .bottom h3 {
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.recipe-html-layout .instagram {
+  position: absolute;
+  bottom: 12px;
+  width: 100%;
+  left: 0;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #d84a82;
+}
+
+.recipe-html-layout .heart {
+  position: absolute;
+  right: 35px;
+  top: 10%;
+  font-size: 1.8rem;
+  color: #f85b99;
+  animation: pulse 2s infinite;
+}
+
+/* ==========================================================================
+   SHOPPING LIST HTML LAYOUT
+   ========================================================================== */
+.page-content.shopping-html-layout {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #ffd9e8, #ffeef5);
+  border: 1px solid #ffb3cb;
+  position: relative;
+  overflow: hidden;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.shopping-html-layout h1 {
+  text-align: center;
+  font-weight: 800;
+  font-size: 1.8rem;
+  line-height: 1.1;
+  color: #111;
+  margin-top: 10px;
+  z-index: 2;
+  animation: fadeDown 1s;
+}
+
+.shopping-html-layout h1 span {
+  display: block;
+  font-size: 1.1rem;
+  color: #d84a82;
+  letter-spacing: 2px;
+}
+
+.shopping-html-layout h2 {
+  font-family: "Great Vibes", cursive;
+  font-size: 2.2rem;
+  color: #f25391;
+  text-align: center;
+  margin-top: 2px;
+  margin-bottom: 15px;
+  animation: fadeUp 1s;
+}
+
+.shopping-html-layout .shopping-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  flex-grow: 1;
+  z-index: 5;
+  margin-bottom: 25px;
+  animation: fadeUp 1.2s;
+}
+
+.shopping-html-layout .shopping-card {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(255, 179, 203, 0.45);
+  border-radius: 14px;
+  padding: 12px 18px;
+  box-shadow: 0 4px 15px rgba(255, 80, 140, 0.02);
+  backdrop-filter: blur(5px);
+}
+
+.shopping-html-layout .shopping-card h3 {
+  font-size: 1.05rem;
+  color: #ff4b8c;
+  margin-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 75, 140, 0.2);
+  padding-bottom: 4px;
+}
+
+.shopping-html-layout .checklist {
+  list-style: none;
+  padding: 0;
+}
+
+.shopping-html-layout .checklist li {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: #333;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.shopping-html-layout .checklist input[type="checkbox"] {
+  accent-color: #ff4b8c;
+  cursor: pointer;
+  width: 14px;
+  height: 14px;
+}
+
+.shopping-html-layout .checklist label {
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   MEAL PLANNER HTML LAYOUT
+   ========================================================================== */
+.page-content.planner-html-layout {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #ffd9e8, #ffeef5);
+  border: 1px solid #ffb3cb;
+  position: relative;
+  overflow: hidden;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.planner-html-layout h1 {
+  text-align: center;
+  font-weight: 800;
+  font-size: 1.8rem;
+  line-height: 1.1;
+  color: #111;
+  margin-top: 10px;
+  z-index: 2;
+  animation: fadeDown 1s;
+}
+
+.planner-html-layout h1 span {
+  display: block;
+  font-size: 1.1rem;
+  color: #d84a82;
+  letter-spacing: 2px;
+}
+
+.planner-html-layout h2 {
+  font-family: "Great Vibes", cursive;
+  font-size: 2.2rem;
+  color: #f25391;
+  text-align: center;
+  margin-top: 2px;
+  margin-bottom: 15px;
+  animation: fadeUp 1s;
+}
+
+.planner-html-layout .planner-grid-wrapper {
+  flex-grow: 1;
+  z-index: 5;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(255, 179, 203, 0.45);
+  border-radius: 16px;
+  padding: 12px;
+  box-shadow: 0 4px 15px rgba(255, 80, 140, 0.02);
+  backdrop-filter: blur(5px);
+  margin-bottom: 25px;
+  overflow-x: auto;
+  animation: fadeUp 1.2s;
+}
+
+.planner-html-layout .planner-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+}
+
+.planner-html-layout .planner-table th {
+  background-color: rgba(247, 90, 156, 0.15);
+  color: #ff4b8c;
+  font-weight: 700;
+  text-align: left;
+  padding: 6px 8px;
+  border-bottom: 1px solid rgba(255, 179, 203, 0.5);
+}
+
+.planner-html-layout .planner-table td {
+  padding: 6px 8px;
+  color: #333;
+  border-bottom: 1px solid rgba(255, 179, 203, 0.2);
+}
+
+.planner-html-layout .planner-table tr:last-child td {
+  border-bottom: none;
+}
+
+.planner-html-layout .day-col {
+  font-weight: 700;
+  color: #ff4b8c !important;
+}
+
+/* ==========================================================================
+   THANK YOU HTML LAYOUT
+   ========================================================================== */
+.page-content.thank-html-layout {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #ffd9e8, #ffeef5);
+  border: 1px solid #ffb3cb;
+  position: relative;
+  overflow: hidden;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.thank-html-layout .icon-top {
+  font-size: 3rem;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  animation: bounce 2s infinite;
+  z-index: 2;
+}
+
+.thank-html-layout .thank-title {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #111;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+  z-index: 2;
+  animation: fadeDown 1s;
+}
+
+.thank-html-layout .thank-subtitle {
+  font-family: "Great Vibes", cursive;
+  font-size: 2.5rem;
+  color: #f25391;
+  text-align: center;
+  margin-bottom: 25px;
+  z-index: 2;
+  animation: fadeUp 1s;
+}
+
+.thank-html-layout .thank-card-wrapper {
+  width: 100%;
+  max-width: 500px;
+  z-index: 5;
+  margin-bottom: 30px;
+  animation: fadeUp 1.2s;
+}
+
+.thank-html-layout .thank-card {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(255, 179, 203, 0.5);
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 8px 25px rgba(255, 80, 140, 0.05);
+  backdrop-filter: blur(5px);
+  text-align: center;
+}
+
+.thank-html-layout .thank-card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #444;
+  margin-bottom: 15px;
+}
+
+.thank-html-layout .thank-card p:last-child {
+  margin-bottom: 0;
+}
+
+.thank-html-layout .signature {
+  font-family: "Great Vibes", cursive;
+  font-size: 2.8rem;
+  color: #ff4b8c;
+  margin-top: 15px;
+}
+
+.thank-html-layout .thank-cta {
+  text-align: center;
+  z-index: 5;
+  max-width: 480px;
+  margin-bottom: 20px;
+  animation: fadeUp 1.4s;
+}
+
+.thank-html-layout .thank-cta p {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 12px;
+}
+
+.thank-html-layout .thank-insta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(90deg, #ff4b8c, #ff7ea7);
+  color: white;
+  text-decoration: none;
+  padding: 10px 24px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 15px rgba(255, 80, 140, 0.3);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.thank-html-layout .thank-insta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 80, 140, 0.4);
+}
+
+/* ==========================================================================
+   HIGH-QUALITY PRINT TO PDF MEDIA QUERIES
+   ========================================================================== */
+@media print {
+  html, body {
+    background: #ffffff !important;
+    color: #222222 !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* Hide HUD controls, headers, sidebars, and dark mode togglers */
+  #controls-hud, #sidebar, .toast-notification, .ambient-background, .table-surface {
+    display: none !important;
+  }
+
+  /* Unfold 3D booklet viewport into printable pages block sequence */
+  .viewport, .zoom-container, #book-shadow-wrapper {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    transform: none !important;
+    perspective: none !important;
+    overflow: visible !important;
+    filter: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+  }
+
+  #book {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    transform: none !important;
+    visibility: visible !important;
+  }
+
+  .page {
+    page-break-after: always !important;
+    page-break-inside: avoid !important;
+    display: block !important;
+    position: relative !important;
+    width: 100% !important;
+    height: 100vh !important;
+    box-shadow: none !important;
+    border: none !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  /* Render image cover and html cards perfectly */
+  .image-mode-img {
+    object-fit: contain !important;
+  }
+
+  .glass-card {
+    backdrop-filter: none !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    box-shadow: none !important;
+    border: 1px solid #ffb3cb !important;
+  }
+}
