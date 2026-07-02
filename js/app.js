@@ -1026,12 +1026,14 @@ function initFloatingHearts(container) {
    RESPONSIVE BOOK RESIZER
    ========================================================================== */
 function resizeBookContainer() {
-  const isPortrait = window.innerWidth <= 1024 || (window.innerHeight > window.innerWidth);
-  if (isPortrait) {
+  const isLandscape = window.innerWidth > window.innerHeight;
+  if (!isLandscape) {
+    // Mobile/Tablet Portrait: fill 100% of viewport
     bookElement.style.width = '100vw';
     bookElement.style.height = '100vh';
   } else {
-    const ratio = 1.6;
+    // Desktop/Tablet Landscape: fit single-page aspect ratio (0.8)
+    const ratio = 0.8;
     const windowWidth = window.innerWidth;
     const windowHeight = window.innerHeight;
     
@@ -1365,24 +1367,25 @@ function initPageFlip() {
 
   // Determine viewport dimension to set sizing appropriately
   const viewportWidth = window.innerWidth;
-  const isPortrait = viewportWidth <= 1024 || (window.innerHeight > viewportWidth);
+  // Force single-page layout on all devices
+  const isPortrait = true;
 
   // Initialize
   pageFlip = new PageFlipClass(bookElement, {
-    width: isPortrait ? window.innerWidth : 900, 
-    height: isPortrait ? window.innerHeight : 1125,
+    width: 900, 
+    height: 1125,
     size: "stretch",
     minWidth: 200,
     maxWidth: 2500,
     minHeight: 200,
     maxHeight: 2500,
-    drawShadow: !isPortrait, // Disable shadows on mobile for flat screen performance
-    flippingTime: 600, // Faster page turn on phone
-    showCover: true,
+    drawShadow: true, 
+    flippingTime: 600, 
+    showCover: false,
     useMouseEvents: true,
     swipeDistance: 30,
     maxShadowOpacity: 0.3,
-    usePortrait: isPortrait
+    usePortrait: true
   });
 
   // Load from HTML elements
