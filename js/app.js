@@ -1879,8 +1879,8 @@ async function triggerPDFDownload() {
   element.style.width = '900px';
   element.style.background = '#ffd9e8';
   element.style.color = '#222222';
-  element.style.position = 'fixed';
-  element.style.left = '-9999px';
+  element.style.position = 'absolute';
+  element.style.left = '0';
   element.style.top = '0';
   element.style.zIndex = '-9999';
   element.style.margin = '0';
@@ -1956,6 +1956,19 @@ async function triggerPDFDownload() {
   }
   
   document.body.appendChild(element);
+  
+  // Wait for all images inside the print container to load completely
+  const images = element.querySelectorAll('img');
+  await Promise.all(Array.from(images).map(img => {
+    if (img.complete) return Promise.resolve();
+    return new Promise(resolve => {
+      img.onload = resolve;
+      img.onerror = resolve;
+    });
+  }));
+  
+  // Let browser paint the layouts and compile fonts
+  await new Promise(resolve => setTimeout(resolve, 500));
   
   const options = {
     margin: 0,
